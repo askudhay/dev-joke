@@ -1,0 +1,134 @@
+<div class="text-white text-center mt-14 mb-8">
+  <h1 class="text-4xl font-bold">Submit your Dev Joke🔥</h1>
+  <p class="text-xl mt-4 max-w-screen-sm mx-auto">
+    Share the fun with Dev Community.
+  </p>
+</div>
+<div>
+  <div class="container mx-auto px-4 md:px-12 max-w-screen-xl order-first">
+    <div class="py-4 rounded-md text-center my-5">
+      <div
+        class="
+          flex flex-col
+          md:flex-row
+          justify-center
+          items-center
+          relative
+          space-y-8
+          md:space-x-8 md:space-y-0
+        "
+      >
+        <div
+          class="bg-blue-700 text-white container p-4 rounded-lg w-full sm:w-96"
+          [hidden]="show"
+        >
+          <form [formGroup]="devJokeForm" class="text-black">
+            <div class="py-4 px-8">
+              <div class="mb-4">
+                <input
+                  class="border rounded w-full py-2 px-3"
+                  type="text"
+                  formControlName="name"
+                  autocomplete="off"
+                  placeholder="Name (Optional)"
+                />
+              </div>
+
+              <div class="mb-4">
+                <input
+                  class="border rounded w-full py-2 px-3"
+                  type="text"
+                  formControlName="twitter"
+                  autocomplete="off"
+                  placeholder="Twitter Handle (Optional)"
+                />
+              </div>
+
+              <div class="mb-4">
+                <textarea
+                  formControlName="question"
+                  class="border rounded w-full py-2 px-3 h-24"
+                  placeholder="Why is the Javascript developer sad?"
+                ></textarea>
+                <small class="text-white" *ngIf="devJokeForm.get('question').hasError('required')">
+                  Hey &uarr; is required field.
+                </small>
+              </div>
+
+              <div class="mb-4">
+                <textarea
+                  formControlName="punchline"
+                  class="border rounded w-full py-2 px-3 h-24"
+                  placeholder="Because they do not Node how to Express themselves."
+                ></textarea>
+                <small class="text-white" *ngIf="devJokeForm.get('punchline').hasError('required')">
+                  Hey &uarr; is required field.
+                </small>
+              </div>
+              <div class="mb-4">
+                <button
+                  class="
+                    bg-pink-600
+                    hover:bg-pink-700
+                    text-white
+                    font-semibold
+                    rounded-b
+                    px-4
+                    pt-2
+                    pb-2
+                    mr-2
+                  "
+                  type="submit"
+                  (click)="postData()"
+                >
+                  Submit Joke🚀
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          class="bg-blue-700 text-white container p-4 rounded-lg w-full sm:w-96"
+          [hidden]="!show"
+        >
+          <h4 class="text-white text-2xl font-semibold mb-7">
+            {{ msg }}
+          </h4>
+        </div>
+      </div>
+      <div class="mt-4" [hidden]="!show">
+        <button
+          class="
+            bg-pink-600
+            hover:bg-pink-700
+            text-white
+            font-semibold
+            rounded-b
+            px-4
+            pt-2
+            pb-2
+            mr-2
+          "
+          (click)="show = !show; this.devJokeForm.reset()"
+        >
+          Submit again🚀
+        </button>
+        <a
+          class="
+            bg-pink-600
+            hover:bg-pink-700
+            text-white
+            font-semibold
+            rounded-b
+            px-4
+            pt-2
+            pb-2
+          "
+          routerLink=""
+        >
+          Home
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
